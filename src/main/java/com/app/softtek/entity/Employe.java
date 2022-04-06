@@ -24,5 +24,5 @@ public class Employe{
 	private String lastName;
 	private Integer dni;
 	private boolean active;
-
+	
 }

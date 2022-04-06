@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -34,12 +35,13 @@ public class EmployeServiceImpl implements IEmployeService{
 	}
 
 	@Override
-	public Validator createEmploye(@RequestBody EmployeDto requestEntity) {
+	public ResponseEntity<EmployeDto> createEmploye(@RequestBody EmployeDto requestEntity) {
 		Validator validator = this.validateABM(requestEntity, messageProperties.getCreateMessage(), messageProperties.getCreateError());
 		if(validator.isSuccess()) {
 			repository.save(toEntity(validator.getObj()));
+			return ResponseEntity.ok(validator.getObj());
 		}
-		return validator;
+		return ResponseEntity.notFound().build();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.app.softtek.iservice;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.app.softtek.dto.EmployeDto;
@@ -12,7 +13,7 @@ public interface IEmployeService {
 
 	Employe findByIdEmploye(Long id);
 	List<EmployeDto> findAllEmployes();
-	Validator createEmploye(@RequestBody EmployeDto requestEntity);
+	ResponseEntity<EmployeDto> createEmploye(@RequestBody EmployeDto requestEntity);
 	Validator updateEmploye(@RequestBody EmployeDto requestEntity);
 	Validator deleteEmploye(Long id);
 }
